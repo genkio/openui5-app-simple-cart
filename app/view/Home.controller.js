@@ -1,5 +1,6 @@
 jQuery.sap.require("util.Formatter");
 jQuery.sap.require("model.Config");
+jQuery.sap.require("openui5.module.SheetAsModel");
 
 sap.ui.controller("view.Home", {
 
@@ -7,6 +8,14 @@ sap.ui.controller("view.Home", {
 		this._router = sap.ui.core.UIComponent.getRouterFor(this);
 		// trigger first search to set visibilities right
 		this._search();
+
+		var oCategoryList = this.getView().byId("categoryList");
+		var sSheetUrl = "1QJyFyGj3Omompkqys0wnCoRAhrp4zVr5bXQgCRJDf-0";
+      	openui5.module.SheetAsModel.parseSheet(sSheetUrl, function(data) {
+      		var oModel = new sap.ui.model.json.JSONModel();
+      		oModel.setData(data);
+        	oCategoryList.setModel(oModel);
+      	});
 	},
 
 	handleSearch : function (oEvent) {
@@ -69,7 +78,8 @@ sap.ui.controller("view.Home", {
 	handleCategoryListItemPress : function (oEvent) {
 		var oBindContext = oEvent.getSource().getBindingContext();
 		var oModel = oBindContext.getModel();
-		var sCategoryId = oModel.getData(oBindContext.getPath()).Category;
+		var iCategoryIdx = parseInt(oBindContext.getPath().match(/\d+/)[0]);
+		var sCategoryId = oModel.getData().ProductCategories[iCategoryIdx].Category;
 		this._router.navTo("category", {id: sCategoryId});
 	},
 	

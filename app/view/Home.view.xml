@@ -97,7 +97,10 @@
 					<StandardListItem
 						title="{CategoryName}"
 						type="Active"
-						counter="{NumberOfProducts}"
+						counter="{
+							path: 'NumberOfProducts',
+							formatter : 'util.Formatter.parseNum'
+						}"
 						press="handleCategoryListItemPress" >
 						<customData>
 							<core:CustomData

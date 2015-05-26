@@ -42,5 +42,9 @@ util.Formatter = {
 	
 	pictureUrl: function (pictureUrl) {
 		return (!model.Config.isMock && pictureUrl) ? model.Config.getHost() + pictureUrl : pictureUrl;
+	},
+
+	parseNum : function(num) {
+		return parseInt(num);
 	}
 };
