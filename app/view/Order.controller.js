@@ -27,9 +27,9 @@ sap.ui.controller("view.Order", {
 		var oView = this.getView();
 		var aInputs = [
 			oView.byId("inputName"),
-			oView.byId("inputAddress"),
-			oView.byId("inputMail"),
-			oView.byId("inputNumber")
+			// oView.byId("inputAddress"),
+			oView.byId("inputMail")
+			// oView.byId("inputNumber")
 		];
 		
 		// make sure all fields are not empty 
