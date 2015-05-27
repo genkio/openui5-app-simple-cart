@@ -63,7 +63,14 @@ sap.ui.controller("view.Product", {
 
 	fnUpdateProduct: function(sChannel, sEvent, oData) {
 		var sPath = "/Products('" + oData.productId + "')";
-		this.getView().bindElement(sPath);
+
+		var iObjectIdx = parseInt(sPath.match(/\d+/)[0]) - 1;
+		var oCoreModel = sap.ui.getCore().getModel();
+		var oProduct = oCoreModel.oData.Products[iObjectIdx];
+  		var oModel = new sap.ui.model.json.JSONModel();
+  		oModel.setData(oProduct);
+    	this.getView().setModel(oModel);
+
 		this._checkIfProductAvailable(sPath, oData.productId);
 	},
 
@@ -79,7 +86,7 @@ sap.ui.controller("view.Product", {
 
 	handleAddButtonPress : function (oEvent) {
 		var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
-		var oProduct = this.getView().getBindingContext().getObject();
+		var oProduct = this.getView().getModel().oData;
 		var sProdStatus = oProduct.status;
 		var that = this;
 
