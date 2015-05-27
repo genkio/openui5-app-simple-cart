@@ -41,9 +41,18 @@ sap.ui.controller("view.Product", {
 		/**
 		 * Workaround because the oDataService is not fully implemented
 		 */
-		var oModel = oView.getModel();
-		var oData = oModel.getData(sPath);
-		oView.bindElement(sPath);
+		var oCoreModel = sap.ui.getCore().getModel();
+		// TODO: oCoreModel becomes undefined when access app via product url
+
+		var sProductId = oEvent.getParameters().arguments.productId;
+		var iObjectIdx = parseInt(sProductId.match(/\d+/)[0]) - 1;
+
+		var oData = oCoreModel.oData.Products[iObjectIdx];
+  		var oModel = new sap.ui.model.json.JSONModel();
+  		oModel.setData(oData);
+
+    	oView.setModel(oModel);
+
 		if (!oData) {
 			this._router.navTo("home", {}, true);
 			if (!sap.ui.Device.system.phone) {

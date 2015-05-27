@@ -12,6 +12,7 @@ sap.ui.controller("view.Category", {
       	openui5.module.SheetAsModel.parseSheet(sSheetUrl, function(data) {
       		var oModel = new sap.ui.model.json.JSONModel();
       		oModel.setData(data);
+      		sap.ui.getCore().setModel(oModel);
         	oProductList.setModel(oModel);
       	});
 	},
