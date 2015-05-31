@@ -146,11 +146,15 @@ sap.ui.define([
 				});
 			}
 
-			var oModel = new ODataModel(sUrl, true, model.Config.getUser(), model.Config.getPwd());
-			//if we do not set this property to false, this would lead to a synchronized request which blocks the ui
-			oModel.setCountSupported(false);
+			jQuery.sap.require("openui5.module.SheetAsModel");
 
-			oView.setModel(oModel);
+			var sSheetsUrl = "10z6wM7OJjF0qxLaiWsGxlzsQ5L9RPW32IGPu7XH6abY";
+
+			openui5.module.SheetAsModel.parseSheets(sSheetsUrl, function(data) {
+	      		var oModel = new sap.ui.model.json.JSONModel();
+	      		oModel.setData(data);
+	      		oView.setModel(oModel);
+	      	});
 
 			//create and set cart model
 			var oCartModel = new JSONModel({

@@ -65,7 +65,7 @@ sap.ui.controller("view.Cart", {
 		var oEntry = this.getView().getModel("cartProducts").getProperty(sPath);
 		var sId = oEntry.ProductId;
 		if (!sap.ui.Device.system.phone) {
-			this._router.getTargets().display("product");
+			this._router.getTargets().display("productView");
 			var bus = sap.ui.getCore().getEventBus();
 			bus.publish("shoppingCart", "updateProduct", {productId: sId});
 		} else {

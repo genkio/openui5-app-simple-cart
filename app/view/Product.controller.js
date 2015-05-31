@@ -1,8 +1,14 @@
 jQuery.sap.require("util.Formatter");
 jQuery.sap.require("sap.m.MessageToast");
 jQuery.sap.require("sap.m.MessageBox");
+jQuery.sap.require("util.Util");
 
 sap.ui.controller("view.Product", {
+
+	_oModel : null,
+	_oView : null,
+	_oProductData : null,
+	_iProductIdx : '',
 
 	onInit : function () {
 		this._router = sap.ui.core.UIComponent.getRouterFor(this);
@@ -15,63 +21,39 @@ sap.ui.controller("view.Product", {
 	},
 
 	_routePatternMatched: function(oEvent) {
-		var sId = oEvent.getParameter("arguments").productId,
-			oView = this.getView(),
-			sPath = "/Products('" + sId + "')";
+		var sProductId = oEvent.getParameter("arguments").productId;
+		this._oView = this.getView();
+		this._oModel = this._oView.getModel();
+		this._iProductIdx = util.Util.parseIndex(sProductId) - 1;
+		this._oProductData = this._oModel.getData().Products;
+		var oProduct = this._oProductData[this._iProductIdx];
 
-		/**
-		 * This is how you would implement deepLinking in your app.
-		 * Because the oDataService which we use is not fully implemented, we cannot deep link.
-		 * Instead we redirect to the start screen.
+		var oJSONModel = new sap.ui.model.json.JSONModel();
+		oJSONModel.setData(oProduct);
+		this._oView.byId("page").setModel(oJSONModel, "productDetail");
 
-		var that = this;
-		var oModel = oView.getModel();
-		var oData = oModel.getData(sPath);
-		oView.bindElement(sPath);
-		//if there is no data the model has to request new data
-		if (!oData) {
-			oView.getElementBinding().attachEventOnce("dataReceived", function() {
-				that._checkIfProductAvailable(sPath, sId);
-			});
-		}
-
-		 * End.
-		 */
-
-		/**
-		 * Workaround because the oDataService is not fully implemented
-		 */
-		var oCoreModel = sap.ui.getCore().getModel();
-		// TODO: oCoreModel becomes undefined when access app via product url
-
-		var sProductId = oEvent.getParameters().arguments.productId;
-		var iObjectIdx = parseInt(sProductId.match(/\d+/)[0]) - 1;
-
-		var oData = oCoreModel.oData.Products[iObjectIdx];
-  		var oModel = new sap.ui.model.json.JSONModel();
-  		oModel.setData(oData);
-
-    	oView.setModel(oModel);
-
-		if (!oData) {
+		if (!oProduct) {
 			this._router.navTo("home", {}, true);
 			if (!sap.ui.Device.system.phone) {
 				this._router.getTargets().display("welcome");
 			}
 		}
+		// if there is no data the model has to request new data
+		// if (!oData) {
+		// 	oView.getElementBinding().attachEventOnce("dataReceived", function() {
+		// 		that._checkIfProductAvailable(sPath, sId);
+		// 	});
+		// }
 	},
 
 	fnUpdateProduct: function(sChannel, sEvent, oData) {
-		var sPath = "/Products('" + oData.productId + "')";
+		var iProductIdx = util.Util.parseIndex(oData.productId) - 1;
+		var oProduct = this._oProductData[iProductIdx];
+		var oModel = new sap.ui.model.json.JSONModel();
+		oModel.setData(oProduct);
+    	this._oView.byId("page").setModel(oModel, "productDetail");
 
-		var iObjectIdx = parseInt(sPath.match(/\d+/)[0]) - 1;
-		var oCoreModel = sap.ui.getCore().getModel();
-		var oProduct = oCoreModel.oData.Products[iObjectIdx];
-  		var oModel = new sap.ui.model.json.JSONModel();
-  		oModel.setData(oProduct);
-    	this.getView().setModel(oModel);
-
-		this._checkIfProductAvailable(sPath, oData.productId);
+		// this._checkIfProductAvailable(sPath, oData.productId);
 	},
 
 	_checkIfProductAvailable: function(sPath, sId) {
@@ -86,7 +68,7 @@ sap.ui.controller("view.Product", {
 
 	handleAddButtonPress : function (oEvent) {
 		var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
-		var oProduct = this.getView().getModel().oData;
+		var oProduct = this._oProductData[this._iProductIdx];
 		var sProdStatus = oProduct.status;
 		var that = this;
 

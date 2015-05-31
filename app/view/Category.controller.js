@@ -1,20 +1,12 @@
 jQuery.sap.require("util.Formatter");
 jQuery.sap.require("openui5.module.SheetAsModel");
+jQuery.sap.require("util.Util");
 
 sap.ui.controller("view.Category", {
 
 	onInit : function () {
 		this._router = sap.ui.core.UIComponent.getRouterFor(this);
 		this._router.getRoute("category").attachMatched(this._loadCategory, this);
-
-		var oProductList = this.getView().byId("productList");
-		var sSheetUrl = "153YaD-9Wga3ZkIvHLwO0Nbphn5wQm806U3jNgVHqK7c";
-      	openui5.module.SheetAsModel.parseSheet(sSheetUrl, function(data) {
-      		var oModel = new sap.ui.model.json.JSONModel();
-      		oModel.setData(data);
-      		sap.ui.getCore().setModel(oModel);
-        	oProductList.setModel(oModel);
-      	});
 	},
 
 	_loadCategory : function(oEvent) {
@@ -64,7 +56,7 @@ sap.ui.controller("view.Category", {
 		}
 		var oModel = oBindContext.getModel();
 		
-		var iObjectIdx = parseInt(oBindContext.getPath().match(/\d+/)[0]);
+		var iObjectIdx = util.Util.parseIndex(oBindContext.getPath());
 		var sCategoryId = oModel.getData().Products[iObjectIdx].Category;
 		var sProductId = oModel.getData().Products[iObjectIdx].ProductId;
 

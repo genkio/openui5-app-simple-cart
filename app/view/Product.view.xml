@@ -7,7 +7,7 @@
 	xmlns:h="http://www.w3.org/1999/xhtml">
 	<Page
 		id="page"
-		title="{/Name}"
+		title="{productDetail>/Name}"
 		showNavButton="{device>/isPhone}"
 		navButtonPress="handleNavButtonPress" >
 		<headerContent>
@@ -29,35 +29,35 @@
 		</footer>
 		<content>
 			<ObjectHeader
-				title="{/Name}"
+				title="{productDetail>/Name}"
 				number="{
-					path : '/Price',
+					path : 'productDetail>/Price',
 					formatter : 'util.Formatter.price'
 				}"
 				numberUnit="EUR">
 				<attributes>
 					<ObjectAttribute
-						text="{/SupplierName}" />
+						text="{productDetail>/SupplierName}" />
 					<ObjectAttribute
-						text="{/ShortDescription}" /> 
+						text="{productDetail>/ShortDescription}" /> 
 					<ObjectAttribute
-						text="{/Weight}g" />
+						text="{productDetail>/Weight}g" />
 				</attributes>
 				<firstStatus>
 					<ObjectStatus
 						text="{
-							path : '/status',
+							path : 'productDetail>/status',
 							formatter : 'util.Formatter.statusText'
 						}"
 						state="{
-							path : '/status',
+							path : 'productDetail>/status',
 							formatter : 'util.Formatter.statusState'
 						}" />
 				</firstStatus>
 			</ObjectHeader>
 			<VBox alignItems="Center">
 				<Image
-					src= "{/PictureUrl}"
+					src= "{productDetail>/PictureUrl}"
 					decorative="true"
 					densityAware="false" />
 			</VBox>
