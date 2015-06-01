@@ -28,26 +28,18 @@ sap.ui.controller("view.Product", {
 		this._oProductData = this._oModel.getData().Products;
 		var oProduct = this._oProductData[this._iProductIdx];
 
+		if (!oProduct) {
+			this._checkIfProductAvailable(this._iProductIdx, sProductId);
+		}
+
 		var oJSONModel = new sap.ui.model.json.JSONModel();
 		oJSONModel.setData(oProduct);
 		this._oView.byId("page").setModel(oJSONModel, "productDetail");
-
-		if (!oProduct) {
-			this._router.navTo("home", {}, true);
-			if (!sap.ui.Device.system.phone) {
-				this._router.getTargets().display("welcome");
-			}
-		}
-		// if there is no data the model has to request new data
-		// if (!oData) {
-		// 	oView.getElementBinding().attachEventOnce("dataReceived", function() {
-		// 		that._checkIfProductAvailable(sPath, sId);
-		// 	});
-		// }
 	},
 
 	fnUpdateProduct: function(sChannel, sEvent, oData) {
 		var iProductIdx = util.Util.parseIndex(oData.productId) - 1;
+		this._iProductIdx = iProductIdx;
 		var oProduct = this._oProductData[iProductIdx];
 		var oModel = new sap.ui.model.json.JSONModel();
 		oModel.setData(oProduct);
@@ -56,13 +48,12 @@ sap.ui.controller("view.Product", {
 		// this._checkIfProductAvailable(sPath, oData.productId);
 	},
 
-	_checkIfProductAvailable: function(sPath, sId) {
-		var oModel = this.getView().getModel();
-		var oData = oModel.getData(sPath);
+	_checkIfProductAvailable: function(iProductIdx, sProductId) {
+		var oProduct = this._oProductData[iProductIdx];
 
 		// show not found page
-		if (!oData) {
-			this._router.getTargets().display("notFound", sId);
+		if (!oProduct) {
+			this._router.getTargets().display("notFound", sProductId);
 		}
 	},
 

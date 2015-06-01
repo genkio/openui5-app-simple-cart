@@ -5,11 +5,11 @@ sap.ui.controller("view.NotFound", {
 		this._router.getTargets().getTarget("notFound").attachDisplay(this._handleDisplay, this);
 	},
 
-	_msg : "<div class='titlesNotFound'>The requested product '{0}' is unknown to the shopping cart app.</div>",
+	_msg : "<div class='titlesNotFound'>Sorry, the requested product '{0}' can't be found.</div>",
 
 	_handleDisplay : function (oEvent) {
-		var oData = oEvent.getParameter("data");
-		var html = this._msg.replace("{0}", oData.hash);
+		var sProductId = oEvent.getParameter("data");
+		var html = this._msg.replace("{0}", sProductId);
 		this.getView().byId("msgHtml").setContent(html);
 	},
 
