@@ -24,17 +24,25 @@ sap.ui.controller("view.Product", {
 		var sProductId = oEvent.getParameter("arguments").productId;
 		this._oView = this.getView();
 		this._oModel = this._oView.getModel();
-		this._iProductIdx = util.Util.parseIndex(sProductId) - 1;
-		this._oProductData = this._oModel.getData().Products;
-		var oProduct = this._oProductData[this._iProductIdx];
 
-		if (!oProduct) {
-			this._checkIfProductAvailable(this._iProductIdx, sProductId);
+		if (!this._oModel) {
+			this._router.navTo("home", {}, true);
+			if (!sap.ui.Device.system.phone) {
+				this._router.getTargets().display("welcome");
+			}
+		} else {
+			this._iProductIdx = util.Util.parseIndex(sProductId) - 1;
+			this._oProductData = this._oModel.getData().Products;
+			var oProduct = this._oProductData[this._iProductIdx];
+
+			if (!oProduct) {
+				this._checkIfProductAvailable(this._iProductIdx, sProductId);
+			}
+
+			var oJSONModel = new sap.ui.model.json.JSONModel();
+			oJSONModel.setData(oProduct);
+			this._oView.byId("page").setModel(oJSONModel, "productDetail");
 		}
-
-		var oJSONModel = new sap.ui.model.json.JSONModel();
-		oJSONModel.setData(oProduct);
-		this._oView.byId("page").setModel(oJSONModel, "productDetail");
 	},
 
 	fnUpdateProduct: function(sChannel, sEvent, oData) {
