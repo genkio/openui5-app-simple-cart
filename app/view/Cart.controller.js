@@ -136,6 +136,18 @@ sap.ui.controller("view.Cart", {
 					press : function () {
 						var bInputValid = oInputView.getController()._checkInput();
 						if (bInputValid) {
+
+							var oData = that.getView().getModel("cartProducts").getData();
+							var sUserMail = oInputView.byId("inputMail").getValue();
+							var sUserName = oInputView.byId("inputName").getValue();
+
+							var oMail = {};
+							oMail['order'] = oData;
+							oMail['userMail'] = sUserMail;
+							oMail['sUserName'] = sUserName;
+
+							that._sendMail(oMail);
+
 							that._orderDialog.close();
 							var msg = "Your order was placed.";
 							that._resetCart();
@@ -168,5 +180,18 @@ sap.ui.controller("view.Cart", {
 		if (!sap.ui.Device.system.phone) {
 			this._router.getTargets().display("welcome");
 		}
+	},
+
+	_sendMail : function(oMail) {
+		$.ajax({
+			url: 'mailgun/send',
+			dataType: 'json',
+			type: 'POST',
+			data: oMail,
+			accepts: 'application/json',
+			success: function(resp) {
+				// console.log(resp);
+			}
+		});
 	}
 });
