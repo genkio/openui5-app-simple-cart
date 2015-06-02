@@ -22,21 +22,6 @@
 				type : 'sap.ui.model.type.String',
 				constraints : {minLength: 1, maxLength: 30}
 			}" />
-<!-- 		<Label
-			text="{i18n>CART_ORDER_ADDRESS_LABEL}" />
-		<Input
-			id="inputAddress"
-			type="Text"
-			placeholder="{i18n>CART_ORDER_ADDRESS_PLACEHOLDER}"
-			valueStateText="{i18n>CART_ORDER_ADDRESS_ERROR}"
-			value="{
-				path : '/address' ,
-				type : 'sap.ui.model.type.String',
-				constraints : {
-					minLength: 1,
-					maxLength: 30
-				}
-			}" /> -->
 		<Label
 			text="{i18n>CART_ORDER_MAIL_LABEL}" />
 		<Input
@@ -54,26 +39,5 @@
 			}" />
 		<Label
 			text="{i18n>CART_ORDER_CARD_TYPE_LABEL}" />
-<!-- 		<Select>
-			<core:Item key="AE" text="American Express" />
-			<core:Item key="MC" text="Master Card" />
-			<core:Item key="VISA" text="VISA" />
-		</Select>
-		<Label
-			text="{i18n>CART_ORDER_CARD_NUMBER_LABEL}" />
-		<Input
-			id="inputNumber"
-			type="Text"
-			placeholder="{i18n>CART_ORDER_CARD_NUMBER_PLACEHOLDER}"
-			valueStateText="{i18n>CART_ORDER_CARD_NUMBER_ERROR}"
-			value="{
-				path : '/creditnumber',
-				type : 'sap.ui.model.type.String',
-				constraints : {
-					minLength: 13,
-					maxLength: 20,
-					search: '^\\b(?:\\d[ -]*?){13,16}\\b$'
-				}
-			}" /> -->
 	</form:SimpleForm>
 </mvc:View>

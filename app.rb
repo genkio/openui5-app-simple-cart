@@ -24,6 +24,6 @@ def send_mail(data)
   "@api.mailgun.net/v3/sandbox9875516d31544ebb87a2892b834cc82e.mailgun.org/messages",
   :from => "admin@simple-cart.herokuapp.com",
   :to => data['userMail'],
-  :subject => "You have a new oder coming in with total price #{data['order']['totalPrice']}",
-  :text => "Congratulations!"
+  :subject => "Thank you for shopping with us",
+  :text => "Your order with total price #{data['order']['totalPrice']} had been placed."
 end

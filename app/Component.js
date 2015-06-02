@@ -128,24 +128,6 @@ sap.ui.define([
 
 			oView.setModel(oI18nModel, "i18n");
 
-			jQuery.sap.require("model.Config");
-			// set data model
-			var sUrl = model.Config.getServiceUrl();
-
-			// start mock server
-			if (model.Config.isMock) {
-				jQuery.sap.require("sap.ui.core.util.MockServer");
-				var oMockServer = new sap.ui.core.util.MockServer({
-					rootUri: sUrl
-				});
-				oMockServer.simulate("model/metadata.xml", "model/");
-				oMockServer.start();
-				var sMsg = "Running in demo mode with mock data.";
-				sap.m.MessageToast.show(sMsg, {
-					duration: 2000
-				});
-			}
-
 			jQuery.sap.require("openui5.module.SheetAsModel");
 
 			var sSheetsUrl = "10z6wM7OJjF0qxLaiWsGxlzsQ5L9RPW32IGPu7XH6abY";

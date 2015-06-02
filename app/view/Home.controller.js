@@ -1,5 +1,4 @@
 jQuery.sap.require("util.Formatter");
-jQuery.sap.require("model.Config");
 jQuery.sap.require("openui5.module.SheetAsModel");
 jQuery.sap.require("util.Util");
 
@@ -17,22 +16,15 @@ sap.ui.controller("view.Home", {
 
 	handleRefresh : function (oEvent) {
 		var that = this;
-		if (model.Config.isMock) {
-			// just wait if we do not have oData services
-			setTimeout(function () {
-				that.getView().byId("pullToRefresh").hide();
-			}, 2000);
-		} else {
-			// trigger search again and hide pullToRefresh when data ready
-			var oProductList = this.getView().byId("productList");
-			var oBinding = oProductList.getBinding("items");
-			var fnHandler = function() {
-				that.getView().byId("pullToRefresh").hide();
-				oBinding.detachDataReceived(fnHandler);
-			};
-			oBinding.attachDataReceived(fnHandler);
-			that._search();
-		}
+		// trigger search again and hide pullToRefresh when data ready
+		var oProductList = this.getView().byId("productList");
+		var oBinding = oProductList.getBinding("items");
+		var fnHandler = function() {
+			that.getView().byId("pullToRefresh").hide();
+			oBinding.detachDataReceived(fnHandler);
+		};
+		oBinding.attachDataReceived(fnHandler);
+		that._search();
 	},
 
 	_search : function () {

@@ -1,5 +1,4 @@
 jQuery.sap.declare("util.Formatter");
-jQuery.sap.require("model.Config");
 
 util.Formatter = {
 		
@@ -40,10 +39,6 @@ util.Formatter = {
 		return (util.Formatter._statusStateMap[status]) ? util.Formatter._statusStateMap[status] : "None";
 	},
 	
-	pictureUrl: function (pictureUrl) {
-		return (!model.Config.isMock && pictureUrl) ? model.Config.getHost() + pictureUrl : pictureUrl;
-	},
-
 	parseNum : function(num) {
 		return parseInt(num);
 	}
