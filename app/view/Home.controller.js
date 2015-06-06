@@ -1,5 +1,5 @@
 jQuery.sap.require("util.Formatter");
-jQuery.sap.require("openui5.module.SheetAsModel");
+jQuery.sap.require("sap.m.MessageToast");
 jQuery.sap.require("util.Util");
 
 sap.ui.controller("view.Home", {
@@ -16,15 +16,14 @@ sap.ui.controller("view.Home", {
 
 	handleRefresh : function (oEvent) {
 		var that = this;
-		// trigger search again and hide pullToRefresh when data ready
-		var oProductList = this.getView().byId("productList");
-		var oBinding = oProductList.getBinding("items");
-		var fnHandler = function() {
-			that.getView().byId("pullToRefresh").hide();
-			oBinding.detachDataReceived(fnHandler);
-		};
-		oBinding.attachDataReceived(fnHandler);
-		that._search();
+		util.Util.updateModel(this.getView());
+
+		sap.ui.getCore().getEventBus().subscribe("ninja.openui5.cart", "modelRefreshed",
+		    function(){
+		    	that.getView().byId("pullToRefresh").hide();
+		    	sap.m.MessageToast.show("Products refreshed");
+		    }
+		);
 	},
 
 	_search : function () {

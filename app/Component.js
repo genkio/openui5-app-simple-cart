@@ -128,15 +128,8 @@ sap.ui.define([
 
 			oView.setModel(oI18nModel, "i18n");
 
-			jQuery.sap.require("openui5.module.SheetAsModel");
-
-			var sSheetsUrl = "10z6wM7OJjF0qxLaiWsGxlzsQ5L9RPW32IGPu7XH6abY";
-
-			openui5.module.SheetAsModel.parseSheets(sSheetsUrl, function(data) {
-	      		var oModel = new sap.ui.model.json.JSONModel();
-	      		oModel.setData(data);
-	      		oView.setModel(oModel);
-	      	});
+			jQuery.sap.require("util.Util");
+			util.Util.updateModel(oView);
 
 			//create and set cart model
 			var oCartModel = new JSONModel({
