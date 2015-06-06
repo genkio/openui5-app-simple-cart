@@ -10,15 +10,22 @@ sap.ui.controller("view.Category", {
 	},
 
 	_loadCategory : function(oEvent) {
-		var oProductList = this.getView().byId("productList");
-		this._changeNoDataTextToIndicateLoading(oProductList);
-		var oBinding = oProductList.getBinding("items");
-		oBinding.attachDataReceived(this.fnDataReceived, this);
-		var sId = oEvent.getParameter("arguments").id;
-		this._sProductId = oEvent.getParameter("arguments").productId;
-		this.getView().byId("page").setTitle(sId);
-		var oFilter = new sap.ui.model.Filter("Category", sap.ui.model.FilterOperator.EQ, sId);
-		oBinding.filter([ oFilter ]);
+		if (!this.getView().getModel()) {
+			sap.ui.core.UIComponent.getRouterFor(this).navTo("home", {}, true);
+			if (!sap.ui.Device.system.phone) {
+				this._router.getTargets().display("welcome");
+			}
+		} else {
+			var oProductList = this.getView().byId("productList");
+			this._changeNoDataTextToIndicateLoading(oProductList);
+			var oBinding = oProductList.getBinding("items");
+			oBinding.attachDataReceived(this.fnDataReceived, this);
+			var sId = oEvent.getParameter("arguments").id;
+			this._sProductId = oEvent.getParameter("arguments").productId;
+			this.getView().byId("page").setTitle(sId);
+			var oFilter = new sap.ui.model.Filter("Category", sap.ui.model.FilterOperator.EQ, sId);
+			oBinding.filter([ oFilter ]);
+		}
 	},
 
 	_changeNoDataTextToIndicateLoading: function (oList) {
