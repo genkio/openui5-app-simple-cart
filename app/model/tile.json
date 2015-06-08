@@ -1,0 +1,36 @@
+{
+  "TileCollection" : [
+    {
+      "icon" : "home",
+      "number" : "1",
+      "numberUnit" : "Server",
+      "title" : "Powered by Heroku",
+      "info" : "Automatic deploys",
+      "infoState" : "Success"
+    },
+    {
+      "icon" : "email",
+      "number" : "400",
+      "numberUnit" : "Emails per day",
+      "title" : "Served by Mailgun",
+      "info" : "Free",
+      "infoState" : "Success"
+    },
+    {
+      "icon" : "locked",
+      "number" : "unlimited",
+      "numberUnit" : "Images",
+      "title" : "Hosted by Dropbox",
+      "info" : "Safe",
+      "infoState" : "Success"
+    },
+    {
+      "icon" : "shield",
+      "number" : "unlimited",
+      "numberUnit" : "Records",
+      "title" : "Stored by Google spreadsheet",
+      "info" : "Robust",
+      "infoState" : "Success"
+    }
+  ]
+}
