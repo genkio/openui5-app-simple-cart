@@ -34,7 +34,7 @@
 					path : 'productDetail>/Price',
 					formatter : 'util.Formatter.price'
 				}"
-				numberUnit="EUR">
+				numberUnit="USD">
 				<attributes>
 					<ObjectAttribute
 						text="{productDetail>/SupplierName}" />

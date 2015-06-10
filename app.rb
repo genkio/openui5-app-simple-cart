@@ -25,5 +25,17 @@ def send_mail(data)
   :from => "admin@simple-cart.herokuapp.com",
   :to => data['userMail'],
   :subject => "Thank you for shopping with us",
-  :text => "Your order with total price #{data['order']['totalPrice']} had been placed."
+  :html => list_purchase(data)
+end
+
+def list_purchase(data)
+  html = "<!doctype html><html><head><body><h1>\
+          Your order with total price #{data['order']['totalPrice']} had been placed.</h1>\
+          <h2>Purchase List:</h2>\
+          <ul>"
+  data.first[1]['entries'].each do |entry|
+    html += "#{entry[-1]['ProductName']} x #{entry[-1]['Quantity']} ($#{entry[-1]['Price']} each)</li>"
+  end
+  html += "</ul></body></html>"
+  return html
 end

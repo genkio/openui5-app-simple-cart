@@ -44,7 +44,7 @@
 				footerText="{
 					path : 'cartProducts>/totalPrice',
 					formatter : 'util.Formatter.totalPrice'
-				} EUR"
+				} USD"
 				mode="{cfg>/listMode}"
 				delete="handleEntryListDelete"
 				select="handleEntryListSelect"
@@ -66,7 +66,7 @@
 							path : 'cartProducts>Price',
 							formatter : 'util.Formatter.price'
 						}"
-						numberUnit="EUR"
+						numberUnit="USD"
 						press="handleEntryListPress"
 						iconInset="false"
 						iconDensityAware="false" >
