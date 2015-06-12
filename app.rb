@@ -29,16 +29,17 @@ def send_mail(data)
 end
 
 def list_purchase(data)
-  html = "<!doctype html><html><head><body><h1>\
-          Your order with total price $#{data['order']['totalPrice']} had been placed.</h1>\
-          <h2>Purchase List:</h2>\
+  html = "<!doctype html><html><head><body>\
+          Dear #{data['sUserName']}:\
+          <p>Your order with total price <strong>$#{data['order']['totalPrice']}</strong> had been placed.</p>\
+          <p>Purchase List:</p>\
           <ul>"
   data.first[1]['entries'].each do |entry|
     html += "<strong>#{entry[-1]['ProductName']}</strong>\
              x #{entry[-1]['Quantity']}\
               ($#{entry[-1]['Price']} each)</li>"
   end
-  html += "</ul>\
+  html += "</ul><hr>\
            <a href='http://simple-cart.herokuapp.com/'>Simple Cart - a simple yet robust e-commerce solution</a>\
            </body></html>"
   return html
