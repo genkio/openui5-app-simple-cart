@@ -30,12 +30,16 @@ end
 
 def list_purchase(data)
   html = "<!doctype html><html><head><body><h1>\
-          Your order with total price #{data['order']['totalPrice']} had been placed.</h1>\
+          Your order with total price $#{data['order']['totalPrice']} had been placed.</h1>\
           <h2>Purchase List:</h2>\
           <ul>"
   data.first[1]['entries'].each do |entry|
-    html += "#{entry[-1]['ProductName']} x #{entry[-1]['Quantity']} ($#{entry[-1]['Price']} each)</li>"
+    html += "<strong>#{entry[-1]['ProductName']}</strong>\
+             x #{entry[-1]['Quantity']}\
+              ($#{entry[-1]['Price']} each)</li>"
   end
-  html += "</ul></body></html>"
+  html += "</ul>\
+           <a href='http://simple-cart.herokuapp.com/'>Simple Cart - a simple yet robust e-commerce solution</a>\
+           </body></html>"
   return html
 end

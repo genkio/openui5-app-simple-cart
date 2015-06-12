@@ -40,8 +40,6 @@
 						text="{productDetail>/SupplierName}" />
 					<ObjectAttribute
 						text="{productDetail>/ShortDescription}" /> 
-					<ObjectAttribute
-						text="{productDetail>/Weight}g" />
 				</attributes>
 				<firstStatus>
 					<ObjectStatus
