@@ -2,6 +2,13 @@
 	display: none;
 }
 
+.welcomePageBackgroundStyle {
+	background-image: url('/img/background.png');  
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: center;
+}
+
 .welcomeText {
 	font-size: 1.0rem;
 	margin: 2rem;
