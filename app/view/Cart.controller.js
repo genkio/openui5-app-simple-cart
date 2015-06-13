@@ -184,7 +184,7 @@ sap.ui.controller("view.Cart", {
 
 	_sendMail : function(oMail) {
 		$.ajax({
-			url: 'mailgun/send',
+			url: 'https://simple-cart.herokuapp.com/mailgun/send',
 			dataType: 'json',
 			type: 'POST',
 			data: oMail,

@@ -37,6 +37,3 @@ DEPENDENCIES
   pry
   rest-client
   sinatra (= 1.4.6)
-
-BUNDLED WITH
-   1.10.2
