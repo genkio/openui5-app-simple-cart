@@ -3,7 +3,7 @@ openui5-app-shopping-cart
 
 # Getting Started
 
-1. Replace the sSheetsUrl variable value (util/Util.js line 11) with your own Google spreadsheet key (please refer to [this](https://github.com/j1wu/openui5-module-sheet-as-model) for more information on how to setup your Google spreadsheet).
+1. Replace the sSheetsUrl variable value (util/Util.js line 11) with your Google spreadsheet key (please refer to [this](https://github.com/j1wu/openui5-module-sheet-as-model) for more information on how to setup your Google spreadsheet), and check out this sample [sheet](https://docs.google.com/spreadsheets/d/10z6wM7OJjF0qxLaiWsGxlzsQ5L9RPW32IGPu7XH6abY/edit?usp=sharing) to create your own.
 2. Replace Mailgun API key and address (app.rb line 23) with your own [Mailgun](https://documentation.mailgun.com/quickstart-sending.html#send-via-api) account API key and address.
 
 # Setting up with Git
