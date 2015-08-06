@@ -107,6 +107,7 @@ sap.ui.define([
 			var oPrevHash = oHistory.getPreviousHash();
 			if (oPrevHash !== undefined) {
 				window.history.go(-1);
+				this._router.getTargets().display("welcome");
 			} else {
 				this._router.navTo("home", {}, true);
 			}
