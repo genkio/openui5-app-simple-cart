@@ -1,16 +1,18 @@
 openui5-app-shopping-cart
 =========================
 
+![screenshot](screenshot.png)
+
+# About This Project
+
+This is one of my personal open source project, a hassle-free shopping cart web application created for a senior friend of mine who runs a mamas & papas shop. This application was built with OpenUI5 framework that consumes the most robust and easy to maintain database - Google spreadsheet :) as its data source, hosted with Heroku, integrated with Mailgun. It's not really that impressive from a technical point of view, but I'm happy with it because once again, the code I wrote, the things I built made a small difference in someone's day.
+
+
 # Getting Started
 
-1. Replace the sSheetsUrl variable value (util/Util.js line 11) with your Google spreadsheet key (please refer to [this](https://github.com/j1wu/openui5-module-sheet-as-model) for more information on how to setup your Google spreadsheet), and check out this sample [sheet](https://docs.google.com/spreadsheets/d/10z6wM7OJjF0qxLaiWsGxlzsQ5L9RPW32IGPu7XH6abY/edit?usp=sharing) to create your own.
+1. Replace the sSheetsUrl variable value (util/Util.js line 11) with your Google spreadsheet key, and check out this sample [sheet](https://docs.google.com/spreadsheets/d/10z6wM7OJjF0qxLaiWsGxlzsQ5L9RPW32IGPu7XH6abY/edit?usp=sharing) to create your own data source.
 2. Replace Mailgun API key and address (app.rb line 23) with your own [Mailgun](https://documentation.mailgun.com/quickstart-sending.html#send-via-api) account API key and address.
 
-# Setting up with Git
-
-1. Instantiate this directory as a git repository with "git init".
-2. Go to github.com, create a new repository, then follow instructions on how to add a remote repository that links to github.
-3. Remember, you have to "git add" changes to ready it for a commit, then "git commit" to commit those changes locally, then "git push origin master" to push it to the remote "origin" repository, which is the previously created github.com repository.
 
 # Deploying to Heroku
 
