@@ -5,7 +5,7 @@ openui5-app-shopping-cart
 
 # About This Project
 
-This is one of my personal open source project, a hassle-free shopping cart web application created for a senior friend of mine who runs a mamas & papas shop. This application was built with OpenUI5 framework that consumes the most robust and easy to maintain database - Google spreadsheet :) as its data source, hosted with Heroku, integrated with Mailgun. It's not really that impressive from a technical point of view, but I'm happy with it because once again, the code I wrote, the things I built made a small difference in someone's day.
+This is one of my personal open source project built on top of the demo app comes with the sdk, a hassle-free shopping cart web application created for a senior friend of mine who runs a mamas & papas shop. This application was built with OpenUI5 framework that consumes the most robust and easy to maintain database - Google spreadsheet :) as its data source, hosted with Heroku, integrated with Mailgun. It's not really that impressive from a technical point of view, but I'm happy with it because once again, the code I wrote, the things I built made a small difference in someone's day.
 
 
 # Getting Started
